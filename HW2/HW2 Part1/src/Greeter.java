@@ -9,9 +9,17 @@ public class Greeter {
     public static void main(String[] args){
 
         Greeter greeter = new Greeter();
-        HelloWorldGreeting helloWorldGreeting = new HelloWorldGreeting();
-        greeter.greet(helloWorldGreeting);
 
-        Greeting myLambdaFunction = () -> System.out.print("Hello world!");
+        Greeting lambdaGreeting = () -> System.out.print("Hello world!");
+
+        Greeting innerClassGreeting = new Greeting() {
+            public void perform() {
+                System.out.print("Hello world!");
+            }
+        };
+
+
+        greeter.greet(lambdaGreeting);
+        greeter.greet(innerClassGreeting);
     }
 }
