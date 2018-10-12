@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class Main {
 
-    private static int numThreads = 1;
+    private static int numThreads = 8;
     private static final ExecutorService threadpool = Executors.newFixedThreadPool(numThreads);
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
