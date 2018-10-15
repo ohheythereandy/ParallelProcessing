@@ -9,9 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         Semaphore[] s = new Semaphore[totalPhilosopherCount];
-        for(Semaphore sem: s){
-            sem = new Semaphore(1);
+        for(int i = 0; i < s.length; i++) {
+            s[i] = new Semaphore(1);
         }
 
         Fork fork = new Fork(s);

@@ -34,13 +34,18 @@ public class Philosopher extends Thread{
         while(!isFull) {
             think();
             System.out.println("Philosopher " + name + ": attempt to acquire forks.");
+
             fork.takeForks(this);
+
             System.out.println("Philosopher " + name + ": acquired forks.");
             eat();
+            //System.out.println("Philosopher " + name + ": finished eating.");
             fork.putForks(this);
             System.out.println("Philosopher " + name + ": put down forks.");
         }
     }
+
+
 
 
     private void eat() {

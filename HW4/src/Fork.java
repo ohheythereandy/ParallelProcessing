@@ -20,23 +20,38 @@ public class Fork {
         this.s = s;
     }
 
-    public synchronized void takeForks(Philosopher p) {
-        state[p.id] = HUNGRY;
-        test(p);
-
+    public synchronized void setHungry(int id) {
+        state[id] = HUNGRY;
     }
 
-    public synchronized void putForks(Philosopher p) {
-        state[p.id] = THINKING;
-        test(p);
-        test(p);
+    public synchronized void setThinking(int id) {
+        state[id] = THINKING;
     }
 
     public synchronized void test(Philosopher p){
         if(state[p.id] == HUNGRY && state[p.left] != EATING && state[p.right] != EATING){
             state[p.id] = EATING;
-
         }
+    }
+
+    public synchronized void takeForks(Philosopher p){
+
+        state[p.id] = HUNGRY;
+        test(p);
+        if(state[p.id] != EATING)
+            try {
+                System.out.println("Philosopher " + p.name + ": blocked trying to grab forks.");
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+    }
+
+    public synchronized void putForks(Philosopher p) {
+        state[p.id] = THINKING;
+        this.notify();
     }
 
 
