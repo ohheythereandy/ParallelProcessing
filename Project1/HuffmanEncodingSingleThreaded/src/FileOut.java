@@ -19,15 +19,24 @@ public class FileOut {
     public void encodeFile()  {
 
         currentLine = " ";
-        String encodedString="";
+        String stringToEncode="";
 
         try {
 
             FileReader file = new FileReader(inputPath);
             BufferedReader read = new BufferedReader(file);
 
-            //BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath, true));
+
+            //write huffcode to file for decoding
+//            BufferedWriter initWrite = new BufferedWriter(new FileWriter(outputPath, true));
+//
+//            for(Map.Entry<Character, String> entry: huffCode.entrySet()) {
+//                initWrite.write(entry.getKey() + "-" + entry.getValue() + "\n");
+//            }
+//            initWrite.close();
+
             FileOutputStream writer = new FileOutputStream(outputPath, true);
+
 
             while((currentLine = read.readLine()) != null) {
 
@@ -36,22 +45,20 @@ public class FileOut {
 
                     //ignore spaces
                     if((currentChar != ' ')) {
-                        encodedString += huffCode.get(currentChar);
-                        //writer.write(replacementStr);
+                        stringToEncode += huffCode.get(currentChar);
 
                     }
 
                 }
 
                 //write in new line
-                //writer.write(huffCode.get('\n'));
-                encodedString+= huffCode.get('\n');
+                stringToEncode+= huffCode.get('\n');
             }
 
-            BitSet bitSet = new BitSet(encodedString.length());
+            BitSet bitSet = new BitSet(stringToEncode.length());
             int bitCounter = 0;
 
-            for(Character c : encodedString.toCharArray()) {
+            for(Character c : stringToEncode.toCharArray()) {
 
                 if(c.equals('1'))
                     bitSet.set(bitCounter);

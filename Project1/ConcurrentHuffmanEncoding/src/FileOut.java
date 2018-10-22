@@ -26,7 +26,14 @@ public class FileOut {
             FileReader file = new FileReader(inputPath);
             BufferedReader read = new BufferedReader(file);
 
-            //BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath, true));
+            //write huffcode to file for decoding
+//            BufferedWriter initWrite = new BufferedWriter(new FileWriter(outputPath, true));
+//
+//            for(Map.Entry<Character, String> entry: huffCode.entrySet()) {
+//                initWrite.write(entry.getKey() + "-" + entry.getValue() + "\n");
+//            }
+//            initWrite.close();
+
             FileOutputStream writer = new FileOutputStream(outputPath, true);
 
             while((currentLine = read.readLine()) != null) {

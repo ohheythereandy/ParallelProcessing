@@ -31,10 +31,7 @@ public class FileInput {
 
             while((currentLine = read.readLine()) != null) {
 
-                //read line from file
-                //currentLine = read.readLine();
 
-               //if(currentLine!=null) {
 
                    //iterate through characters in line and do stuff to map
                    for(char currentChar: currentLine.toCharArray()){

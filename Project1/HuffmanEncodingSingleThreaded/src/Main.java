@@ -13,20 +13,24 @@ public class Main {
 
         FileInput f = new FileInput();
         Map<Character, Integer > inputMap = new HashMap<>();
-        long startTime=0;
-        long endTime=0;
+        long startTime;
+        long endTime;
 
+        //get frequency count for characters from file
         try {
             inputMap = f.getFileMap();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //System.out.println(inputMap);
+
 
         Huffman huff = new Huffman(inputMap);
+
+        //retrieve map containing character as key and its corresponding huffman encoded value
         Map<Character, String> huffCode = huff.getHuffCode();
 
+        //use map to write to new file
         FileOut o = new FileOut(huffCode);
         startTime = System.currentTimeMillis();
         o.encodeFile();

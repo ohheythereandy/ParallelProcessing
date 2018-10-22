@@ -16,15 +16,18 @@ public class Main {
         long startTime=0;
         long endTime=0;
 
+        //get frequency count for characters from file
         try {
             inputMap = f.getFileMap();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //System.out.println(inputMap);
+
 
         Huffman huff = new Huffman(inputMap);
+
+        //retrieve map containing character as key and its corresponding huffman encoded value
         Map<Character, String> huffCode = huff.getHuffCode();
 
         FileOut o = new FileOut(huffCode);
