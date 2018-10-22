@@ -20,7 +20,6 @@ public class FileInput {
     public HashMap<Character,Integer> getFileMap() throws IOException{
 
         currentLine = " ";
-        boolean exit = false;
         HashMap<Character, Integer> retMap = new HashMap<>();
 
         try {
@@ -40,13 +39,17 @@ public class FileInput {
                    //iterate through characters in line and do stuff to map
                    for(char currentChar: currentLine.toCharArray()){
 
-                       //if not  in map, add it
-                       if(!retMap.containsKey(currentChar))
-                           retMap.put(currentChar, 1);
-                       else { //increment map value by one
-                           int freq = retMap.get(currentChar);
-                           retMap.put(currentChar, freq + 1);
+                        //ignore spaces
+                       if((currentChar != ' ')) {
+                           //if not  in map, add it
+                           if(!retMap.containsKey(currentChar))
+                               retMap.put(currentChar, 1);
+                           else { //increment map value by one
+                               int freq = retMap.get(currentChar);
+                               retMap.put(currentChar, freq + 1);
+                           }
                        }
+
                    }
 
                    //increment new line character
