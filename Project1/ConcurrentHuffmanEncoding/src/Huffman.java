@@ -20,7 +20,6 @@ public class Huffman {
         long startTime = System.currentTimeMillis();
         buildTree();
         long endTime = System.currentTimeMillis();
-
         System.out.println("Time to create huffman tree: " + ((float)(endTime - startTime) / 1000) + " seconds.");
 
         populateHuffCode(root, "");
@@ -49,19 +48,22 @@ public class Huffman {
 
         PriorityQueue<HuffmanNode> queue = new PriorityQueue<>(numberOfCharacters, new MyComparator());
 
-        //create huffmannode for each character with freq as value and add it to queue
-        for(Map.Entry<Character, Integer> entry : inputMap.entrySet()){
 
-            HuffmanNode hn = new HuffmanNode();
-            hn.c = entry.getKey();
-            hn.data = entry.getValue();
+        inputMap.entrySet()
+                .parallelStream()
+                .forEach(entry -> {
+                    HuffmanNode hn = new HuffmanNode();
+                    hn.c = entry.getKey();
+                    hn.data = entry.getValue();
 
-            hn.left = null;
-            hn.right = null;
+                    hn.left = null;
+                    hn.right = null;
 
-            queue.add(hn);
+                    queue.add(hn);
 
-        }
+                });
+
+
 
         //root node
         root = null;
