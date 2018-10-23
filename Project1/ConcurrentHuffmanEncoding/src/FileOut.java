@@ -19,7 +19,7 @@ public class FileOut {
     public void encodeFile()  {
 
         currentLine = " ";
-        String encodedString="";
+        StringBuilder encodedString = new StringBuilder();
 
         try {
 
@@ -27,12 +27,13 @@ public class FileOut {
             BufferedReader read = new BufferedReader(file);
 
             //write huffcode to file for decoding
-//            BufferedWriter initWrite = new BufferedWriter(new FileWriter(outputPath, true));
-//
-//            for(Map.Entry<Character, String> entry: huffCode.entrySet()) {
-//                initWrite.write(entry.getKey() + "-" + entry.getValue() + "\n");
-//            }
-//            initWrite.close();
+            BufferedWriter initWrite = new BufferedWriter(new FileWriter(outputPath, true));
+
+            for(Map.Entry<Character, String> entry: huffCode.entrySet()) {
+                initWrite.write(entry.getKey() + "-" + entry.getValue() + "\n");
+            }
+            initWrite.close();
+
 
             FileOutputStream writer = new FileOutputStream(outputPath, true);
 
@@ -43,7 +44,7 @@ public class FileOut {
 
                     //ignore spaces
                     if((currentChar != ' ')) {
-                        encodedString += huffCode.get(currentChar);
+                        encodedString.append( huffCode.get(currentChar));
                         //writer.write(replacementStr);
 
                     }
@@ -52,7 +53,7 @@ public class FileOut {
 
                 //write in new line
                 //writer.write(huffCode.get('\n'));
-                encodedString+= huffCode.get('\n');
+                 encodedString.append(huffCode.get('\n'));
             }
 
             //Convert string to byte
@@ -60,7 +61,7 @@ public class FileOut {
             BitSet bitSet = new BitSet(encodedString.length());
             int bitCounter = 0;
 
-            for(Character c : encodedString.toCharArray()) {
+            for(Character c : encodedString.toString().toCharArray()) {
 
                 if(c.equals('1'))
                     bitSet.set(bitCounter);
