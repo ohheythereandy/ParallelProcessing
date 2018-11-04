@@ -5,9 +5,6 @@ import java.util.Scanner;
  */
 public class Main {
 
-    /**
-     * Main class asks user for input to decide what version of Produce/Consumer problem to run
-     */
     public static void main(String[] args) throws InterruptedException{
 
         Scanner kb = new Scanner(System.in);
@@ -53,9 +50,6 @@ public class Main {
             Producer p1 = new Producer(sharedBuffer, 1);
             Producer p2 = new Producer(sharedBuffer, 2);
 
-            p1.start();
-            p2.start();
-
             Consumer c1 = new Consumer(sharedBuffer, 1);
             Consumer c2 = new Consumer(sharedBuffer, 2);
             Consumer c3 = new Consumer(sharedBuffer, 3);
@@ -64,7 +58,8 @@ public class Main {
 
             startTime = System.currentTimeMillis();
 
-
+            p1.start();
+            p2.start();
 
 
             c1.start();
