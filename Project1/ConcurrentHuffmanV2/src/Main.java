@@ -7,15 +7,14 @@ import java.util.Map;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
-        //start timer for entire program
         long progStart = System.currentTimeMillis();
 
         FileInput f = new FileInput();
         Map<Character, Integer > inputMap = new HashMap<>();
-        long startTime=0;
-        long endTime=0;
+        long startTime;
+        long endTime;
 
         //get frequency count for characters from file
         try {
@@ -25,12 +24,13 @@ public class Main {
         }
 
 
-        //create huffman object that will create a tree given the map indicating characters in file and their frequency
+
         Huffman huff = new Huffman(inputMap);
 
         //retrieve map containing character as key and its corresponding huffman encoded value
         Map<Character, String> huffCode = huff.getHuffCode();
 
+        //use map to write to new file
         FileOut o = new FileOut(huffCode);
         startTime = System.currentTimeMillis();
         o.encodeFile();
